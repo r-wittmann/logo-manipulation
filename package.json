@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/r-wittmann/logo-manipulation/issues"
   },
-  "homepage": "https://github.com/r-wittmann/logo-manipulation#readme"
+  "homepage": "https://github.com/r-wittmann/logo-manipulation#readme",
+  "dependencies": {
+    "jimp": "^0.2.28"
+  }
 }
