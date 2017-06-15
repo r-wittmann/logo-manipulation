@@ -4,84 +4,59 @@ var fs = require('fs')
 var manipulateLogos = (filename) => {
   Jimp.read(`original_logos/${filename}`, (err, image) => {
     err && console.error(err)
-    image.resize(256, 256)
-      .write(`manipulated_logos/${filename.split('.')[0]}/small.png`) 
-})
-  Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.invert()
-      .write(`manipulated_logos/${filename.split('.')[0]}/invert.png`)
-  })
 
-  Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.blur(10)
-      .write(`manipulated_logos/${filename.split('.')[0]}/blur.png`)
-  })
-    Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.brightness(-0.8)
-      .write(`manipulated_logos/${filename.split('.')[0]}/brightness.png`)
-  })
+    var path = `manipulated_logos/${filename.split('.')[0]}/`
 
-    Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.crop(500,100,75,75)
-      .write(`manipulated_logos/${filename.split('.')[0]}/crop.png`)
-  })
-    Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.rotate(30)
-      .write(`manipulated_logos/${filename.split('.')[0]}/rotate.png`)
-  })
-    Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.opacity(0.5)
-      .write(`manipulated_logos/${filename.split('.')[0]}/opacity.png`)
-  })
-    Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.rotate(50,'false')
-      .write(`manipulated_logos/${filename.split('.')[0]}/resizefalse.png`)
-  })
+    image.clone()
+      .resize(256, 256)
+      .write(`${path}small.png`)
 
-        Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.contrast(0.7)
-      .write(`manipulated_logos/${filename.split('.')[0]}/contrast1.png`)
-  })
-    Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.contrast(-0.7)
-    image.rotate(15)
-      .write(`manipulated_logos/${filename.split('.')[0]}/contrast2.png`)
-  })
-    Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.resize(500,250)
-      .write(`manipulated_logos/${filename.split('.')[0]}/resize.png`)
-  })
-        Jimp.read(`original_logos/${filename}`, (err, image) => {
-    err && console.error(err)
-  
-    image.mirror(true, false)
-      .write(`manipulated_logos/${filename.split('.')[0]}/mirror.png`)
-  })
+    image.clone()
+      .invert()
+      .write(`${path}invert.png`)
 
+    image.clone()
+      .blur(10)
+      .write(`${path}blur.png`)
 
+    image.clone()
+      .brightness(-0.8)
+      .write(`${path}brightness.png`)
+
+    image.clone()
+      .crop(500, 100, 75, 75)
+      .write(`${path}crop.png`)
+
+    image.clone()
+      .rotate(30)
+      .write(`${path}rotate.png`)
+
+    image.clone()
+      .opacity(0.5)
+      .write(`${path}opacity.png`)
+
+    image.clone()
+      .rotate(50, 'false')
+      .write(`${path}resizefalse.png`)
+
+    image.clone()
+      .contrast(0.7)
+      .write(`${path}contrast1.png`)
+
+    image.clone()
+      .contrast(-0.7)
+      .rotate(15)
+      .write(`${path}contrast2.png`)
+
+    image.clone()
+      .resize(500, 250)
+      .write(`${path}resize.png`)
+
+    image.clone()
+      .mirror(true, false)
+      .write(`${path}mirror.png`)
+  })
 }
-
-
 
 var readFiles = (dirname) => {
   fs.readdir(dirname, (err, filenames) => {
