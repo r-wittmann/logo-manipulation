@@ -4,6 +4,7 @@ var fs = require('fs')
 var manipulateLogos = (filename) => {
   Jimp.read(`original_logos/${filename}`, (err, image) => {
     err && console.error(err)
+    image.resize(512, Jimp.AUTO)
 
     var path = `manipulated_logos/${filename.split('.')[0]}/`
 
@@ -24,7 +25,7 @@ var manipulateLogos = (filename) => {
       .write(`${path}brightness.png`)
 
     image.clone()
-      .crop(500, 100, 75, 75)
+      .crop(200, 100, 75, 75)
       .write(`${path}crop.png`)
 
     image.clone()
@@ -55,6 +56,16 @@ var manipulateLogos = (filename) => {
     image.clone()
       .mirror(true, false)
       .write(`${path}mirror.png`)
+
+    image.clone()
+      .color([
+       { apply: 'hue', params: [ -90 ] },
+       { apply: 'lighten', params: [ 50 ] },
+       { apply: 'xor', params: [ '#06D' ] }
+        ])
+      .write(`${path}color.png`)
+
+
   })
 }
 
