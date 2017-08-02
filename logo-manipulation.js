@@ -82,7 +82,7 @@ var manipulateLogos = (filename) => {
        { apply: 'hue', params: [ -90 ] },
        { apply: 'lighten', params: [ 50 ] },
        { apply: 'xor', params: [ '#06D' ] }
-        ])
+      ])
       .write(`${path}color.png`)
 
     image.clone()
@@ -90,10 +90,8 @@ var manipulateLogos = (filename) => {
        { apply: 'hue', params: [ +90 ] },
        { apply: 'lighten', params: [ 20 ] },
        { apply: 'xor', params: [ '#06D' ] }
-        ])
+      ])
       .write(`${path}color2.png`)
-
-
   })
 }
 
@@ -107,5 +105,4 @@ var readFiles = (dirname) => {
 }
 
 readFiles('original_logos/')
-
 
